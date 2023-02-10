@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		AA9D36F2299F22AB00716D7A /* StandupsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D36F1299F22AB00716D7A /* StandupsApp.swift */; };
-		AA9D36F4299F22AB00716D7A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D36F3299F22AB00716D7A /* ContentView.swift */; };
 		AA9D36F6299F22AB00716D7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9D36F5299F22AB00716D7A /* Assets.xcassets */; };
 		AA9D36F9299F22AB00716D7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9D36F8299F22AB00716D7A /* Preview Assets.xcassets */; };
+		AA9D3700299F22AB00716D7A /* StandupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D36FF299F22AB00716D7A /* StandupsList.swift */; };
+		AA9D3702299F22AB00716D7A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D3701299F22AB00716D7A /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AA9D36EE299F22AB00716D7A /* Standups.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Standups.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9D36F1299F22AB00716D7A /* StandupsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupsApp.swift; sourceTree = "<group>"; };
-		AA9D36F3299F22AB00716D7A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA9D36F5299F22AB00716D7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA9D36F8299F22AB00716D7A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AA9D36FF299F22AB00716D7A /* StandupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupsList.swift; sourceTree = "<group>"; };
+		AA9D3701299F22AB00716D7A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +54,8 @@
 			isa = PBXGroup;
 			children = (
 				AA9D36F1299F22AB00716D7A /* StandupsApp.swift */,
-				AA9D36F3299F22AB00716D7A /* ContentView.swift */,
+				AA9D36FF299F22AB00716D7A /* StandupsList.swift */,
+				AA9D3701299F22AB00716D7A /* Models.swift */,
 				AA9D36F5299F22AB00716D7A /* Assets.xcassets */,
 				AA9D36F7299F22AB00716D7A /* Preview Content */,
 			);
@@ -137,7 +140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA9D36F4299F22AB00716D7A /* ContentView.swift in Sources */,
+				AA9D3702299F22AB00716D7A /* Models.swift in Sources */,
+				AA9D3700299F22AB00716D7A /* StandupsList.swift in Sources */,
 				AA9D36F2299F22AB00716D7A /* StandupsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +287,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryan-son.Standups";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -312,6 +317,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryan-son.Standups";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
