@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Tagged
 
 struct Standup: Equatable, Identifiable, Codable {
-  let id: UUID
+  let id: Tagged<Self, UUID>
   var attendees: [Attendee] = []
   var duration = Duration.seconds(60 * 5)
   var meetings: [Meeting] = []
@@ -26,7 +27,7 @@ struct Attendee: Equatable, Identifiable, Codable {
 }
 
 struct Meeting: Equatable, Identifiable, Codable {
-  let id: UUID
+  let id: Tagged<Self, UUID>
   let date: Date
 }
 
