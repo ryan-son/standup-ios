@@ -13,6 +13,7 @@
 		AA9D36F9299F22AB00716D7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9D36F8299F22AB00716D7A /* Preview Assets.xcassets */; };
 		AA9D3700299F22AB00716D7A /* StandupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D36FF299F22AB00716D7A /* StandupsList.swift */; };
 		AA9D3702299F22AB00716D7A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D3701299F22AB00716D7A /* Models.swift */; };
+		AAB8AE1A29991AC500545905 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8AE1929991AC500545905 /* SwiftUINavigation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAB8AE1A29991AC500545905 /* SwiftUINavigation in Frameworks */,
 				AA31B7EF29A0A55D00FBE7D2 /* Tagged in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +92,7 @@
 			name = Standups;
 			packageProductDependencies = (
 				AA31B7EE29A0A55D00FBE7D2 /* Tagged */,
+				AAB8AE1929991AC500545905 /* SwiftUINavigation */,
 			);
 			productName = Standups;
 			productReference = AA9D36EE299F22AB00716D7A /* Standups.app */;
@@ -121,6 +124,7 @@
 			mainGroup = AA9D36E5299F22AB00716D7A;
 			packageReferences = (
 				AA31B7ED29A0A55D00FBE7D2 /* XCRemoteSwiftPackageReference "swift-tagged" */,
+				AAB8AE1829991AC500545905 /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
 			);
 			productRefGroup = AA9D36EF299F22AB00716D7A /* Products */;
 			projectDirPath = "";
@@ -363,6 +367,14 @@
 				minimumVersion = 0.9.0;
 			};
 		};
+		AAB8AE1829991AC500545905 /* XCRemoteSwiftPackageReference "swiftui-navigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swiftui-navigation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -370,6 +382,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA31B7ED29A0A55D00FBE7D2 /* XCRemoteSwiftPackageReference "swift-tagged" */;
 			productName = Tagged;
+		};
+		AAB8AE1929991AC500545905 /* SwiftUINavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAB8AE1829991AC500545905 /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
+			productName = SwiftUINavigation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

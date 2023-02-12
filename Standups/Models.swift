@@ -21,14 +21,51 @@ struct Standup: Equatable, Identifiable, Codable {
   }
 }
 
+extension Standup {
+  static let mock = Self(
+    id: Standup.ID(UUID()),
+    attendees: [
+      Attendee(id: Attendee.ID(UUID()), name: "Blob"),
+      Attendee(id: Attendee.ID(UUID()), name: "Blob Jr"),
+      Attendee(id: Attendee.ID(UUID()), name: "Blob Sr"),
+      Attendee(id: Attendee.ID(UUID()), name: "Blob Esq"),
+      Attendee(id: Attendee.ID(UUID()), name: "Blob III"),
+      Attendee(id: Attendee.ID(UUID()), name: "Blob I"),
+    ],
+    duration: .seconds(60),
+    meetings: [
+      Meeting(
+        id: Meeting.ID(UUID()),
+        date: Date().addingTimeInterval(-60 * 60 * 24 * 7),
+        transcript: """
+            Lorem ipsum dolor sit amet, consectetur \
+            adipiscing elit, sed do eiusmod tempor \
+            incididunt ut labore et dolore magna aliqua. \
+            Ut enim ad minim veniam, quis nostrud \
+            exercitation ullamco laboris nisi ut aliquip \
+            ex ea commodo consequat. Duis aute irure \
+            dolor in reprehenderit in voluptate velit \
+            esse cillum dolore eu fugiat nulla pariatur. \
+            Excepteur sint occaecat cupidatat non \
+            proident, sunt in culpa qui officia deserunt \
+            mollit anim id est laborum.
+            """
+      )
+    ],
+    theme: .orange,
+    title: "Design"
+  )
+}
+
 struct Attendee: Equatable, Identifiable, Codable {
-  let id: UUID
+  let id: Tagged<Self, UUID>
   let name: String
 }
 
 struct Meeting: Equatable, Identifiable, Codable {
   let id: Tagged<Self, UUID>
   let date: Date
+  let transcript: String
 }
 
 enum Theme:
@@ -82,9 +119,9 @@ enum Theme:
         .purple:
       return .white
     }
-
-    var mainColor: Color { Color(self.rawValue) }
-
-    var name: String { self.rawValue.capitalized }
   }
+
+  var mainColor: Color { Color(self.rawValue) }
+
+  var name: String { self.rawValue.capitalized }
 }

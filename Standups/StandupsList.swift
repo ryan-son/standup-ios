@@ -5,13 +5,26 @@
 //  Created by Geonhee on 2023/02/10.
 //
 
+import SwiftUINavigation
 import SwiftUI
 
 final class StandupsListModel: ObservableObject {
+  @Published var destination: Destination?
   @Published var standups: [Standup]
 
-  init(standups: [Standup] = []) {
+  enum Destination {
+    case add(Standup)
+  }
+
+  init(
+    destination: Destination? = nil,
+    standups: [Standup] = []
+  ) {
     self.standups = standups
+  }
+
+  func addStandupButtonTapped() {
+    self.destination = .add(Standup(id: Standup.ID(UUID())))
   }
 }
 
@@ -23,9 +36,24 @@ struct StandupsList: View {
       List {
         ForEach(self.model.standups) { standup in
           CardView(standup: standup)
+            .listRowBackground(standup.theme.mainColor)
         }
       }
+      .toolbar {
+        Button {
+          self.model.addStandupButtonTapped()
+        } label: {
+          Image(systemName: "plus")
+        }
+
+      }
       .navigationTitle("Daily Standups")
+      .sheet(
+        unwrapping: self.$model.destination,
+        case: /StandupsListModel.Destination.add
+      ) { $standup in
+          let _
+        }
     }
   }
 }
@@ -48,7 +76,7 @@ struct CardView: View {
           self.standup.duration.formatted(.units()),
           systemImage: "clock"
         )
-        .labelStyle(.titleAndIcon)
+        .labelStyle(.trailingIcon)
       }
       .font(.caption)
     }
@@ -57,8 +85,28 @@ struct CardView: View {
   }
 }
 
+struct TrailingIconLabelStyle: LabelStyle {
+  func makeBody(configuration: Configuration) -> some View {
+    HStack {
+      configuration.title
+      configuration.icon
+    }
+  }
+}
+
+extension LabelStyle where Self == TrailingIconLabelStyle {
+  static var trailingIcon: Self { Self() }
+}
+
+@MainActor
 struct StandupsList_Previews: PreviewProvider {
   static var previews: some View {
-    StandupsList(model: StandupsListModel())
+    StandupsList(
+      model: StandupsListModel(
+        standups: [
+          .mock
+        ]
+      )
+    )
   }
 }
