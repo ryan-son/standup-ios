@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA08A3B6299BC88F0016C9FB /* EditStandup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA08A3B5299BC88F0016C9FB /* EditStandup.swift */; };
 		AA31B7EF29A0A55D00FBE7D2 /* Tagged in Frameworks */ = {isa = PBXBuildFile; productRef = AA31B7EE29A0A55D00FBE7D2 /* Tagged */; };
 		AA9D36F2299F22AB00716D7A /* StandupsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D36F1299F22AB00716D7A /* StandupsApp.swift */; };
 		AA9D36F6299F22AB00716D7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9D36F5299F22AB00716D7A /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA08A3B5299BC88F0016C9FB /* EditStandup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStandup.swift; sourceTree = "<group>"; };
 		AA9D36EE299F22AB00716D7A /* Standups.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Standups.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9D36F1299F22AB00716D7A /* StandupsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupsApp.swift; sourceTree = "<group>"; };
 		AA9D36F5299F22AB00716D7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 		AA9D36F0299F22AB00716D7A /* Standups */ = {
 			isa = PBXGroup;
 			children = (
+				AA08A3B5299BC88F0016C9FB /* EditStandup.swift */,
 				AA9D36F1299F22AB00716D7A /* StandupsApp.swift */,
 				AA9D36FF299F22AB00716D7A /* StandupsList.swift */,
 				AA9D3701299F22AB00716D7A /* Models.swift */,
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA9D3702299F22AB00716D7A /* Models.swift in Sources */,
+				AA08A3B6299BC88F0016C9FB /* EditStandup.swift in Sources */,
 				AA9D3700299F22AB00716D7A /* StandupsList.swift in Sources */,
 				AA9D36F2299F22AB00716D7A /* StandupsApp.swift in Sources */,
 			);

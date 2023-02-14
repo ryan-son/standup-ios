@@ -52,8 +52,11 @@ struct StandupsList: View {
         unwrapping: self.$model.destination,
         case: /StandupsListModel.Destination.add
       ) { $standup in
-          let _
+        NavigationStack {
+          EditStandupView(standup: $standup)
+            .navigationTitle("New standup")
         }
+      }
     }
   }
 }

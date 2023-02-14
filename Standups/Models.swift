@@ -59,7 +59,7 @@ extension Standup {
 
 struct Attendee: Equatable, Identifiable, Codable {
   let id: Tagged<Self, UUID>
-  let name: String
+  var name: String
 }
 
 struct Meeting: Equatable, Identifiable, Codable {
