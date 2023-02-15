@@ -13,7 +13,7 @@ final class StandupsListModel: ObservableObject {
   @Published var standups: [Standup]
 
   enum Destination {
-    case add(Standup)
+    case add(EditStandupModel)
   }
 
   init(
@@ -24,7 +24,26 @@ final class StandupsListModel: ObservableObject {
   }
 
   func addStandupButtonTapped() {
-    self.destination = .add(Standup(id: Standup.ID(UUID())))
+    self.destination = .add(EditStandupModel(standup: Standup(id: Standup.ID(UUID()))))
+  }
+
+  func dismissAddStandupButtonTapped() {
+    self.destination = nil
+  }
+
+  func confirmAddStandupButtonTapped() {
+    defer { self.destination = nil }
+
+    guard case let .add(editStandupModel) = self.destination else { return }
+    var standup = editStandupModel.standup
+
+    standup.attendees.removeAll { attendee in
+      attendee.name.allSatisfy(\.isWhitespace)
+    }
+    if standup.attendees.isEmpty {
+      standup.attendees.append(Attendee(id: Attendee.ID(UUID()), name: ""))
+    }
+    self.standups.append(standup)
   }
 }
 
@@ -51,10 +70,22 @@ struct StandupsList: View {
       .sheet(
         unwrapping: self.$model.destination,
         case: /StandupsListModel.Destination.add
-      ) { $standup in
+      ) { $model in
         NavigationStack {
-          EditStandupView(standup: $standup)
+          EditStandupView(model: model)
             .navigationTitle("New standup")
+            .toolbar {
+              ToolbarItem(placement: .cancellationAction) {
+                Button("Dismiss") {
+                  self.model.dismissAddStandupButtonTapped()
+                }
+              }
+              ToolbarItem(placement: .confirmationAction) {
+                Button("Add") {
+                  self.model.confirmAddStandupButtonTapped()
+                }
+              }
+            }
         }
       }
     }
