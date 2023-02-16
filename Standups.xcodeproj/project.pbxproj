@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA08A3B6299BC88F0016C9FB /* EditStandup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA08A3B5299BC88F0016C9FB /* EditStandup.swift */; };
+		AA08A3BE299D1C600016C9FB /* StandupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA08A3BD299D1C600016C9FB /* StandupsTests.swift */; };
 		AA31B7EF29A0A55D00FBE7D2 /* Tagged in Frameworks */ = {isa = PBXBuildFile; productRef = AA31B7EE29A0A55D00FBE7D2 /* Tagged */; };
 		AA9D36F2299F22AB00716D7A /* StandupsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D36F1299F22AB00716D7A /* StandupsApp.swift */; };
 		AA9D36F6299F22AB00716D7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9D36F5299F22AB00716D7A /* Assets.xcassets */; };
@@ -17,8 +18,20 @@
 		AAB8AE1A29991AC500545905 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = AAB8AE1929991AC500545905 /* SwiftUINavigation */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AA08A3BF299D1C600016C9FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA9D36E6299F22AB00716D7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA9D36ED299F22AB00716D7A;
+			remoteInfo = Standups;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		AA08A3B5299BC88F0016C9FB /* EditStandup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStandup.swift; sourceTree = "<group>"; };
+		AA08A3BB299D1C600016C9FB /* StandupsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StandupsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA08A3BD299D1C600016C9FB /* StandupsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupsTests.swift; sourceTree = "<group>"; };
 		AA9D36EE299F22AB00716D7A /* Standups.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Standups.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9D36F1299F22AB00716D7A /* StandupsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupsApp.swift; sourceTree = "<group>"; };
 		AA9D36F5299F22AB00716D7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -28,6 +41,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AA08A3B8299D1C600016C9FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA9D36EB299F22AB00716D7A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -40,10 +60,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA08A3BC299D1C600016C9FB /* StandupsTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA08A3BD299D1C600016C9FB /* StandupsTests.swift */,
+			);
+			path = StandupsTests;
+			sourceTree = "<group>";
+		};
 		AA9D36E5299F22AB00716D7A = {
 			isa = PBXGroup;
 			children = (
 				AA9D36F0299F22AB00716D7A /* Standups */,
+				AA08A3BC299D1C600016C9FB /* StandupsTests */,
 				AA9D36EF299F22AB00716D7A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				AA9D36EE299F22AB00716D7A /* Standups.app */,
+				AA08A3BB299D1C600016C9FB /* StandupsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,6 +110,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AA08A3BA299D1C600016C9FB /* StandupsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA08A3C1299D1C600016C9FB /* Build configuration list for PBXNativeTarget "StandupsTests" */;
+			buildPhases = (
+				AA08A3B7299D1C600016C9FB /* Sources */,
+				AA08A3B8299D1C600016C9FB /* Frameworks */,
+				AA08A3B9299D1C600016C9FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA08A3C0299D1C600016C9FB /* PBXTargetDependency */,
+			);
+			name = StandupsTests;
+			productName = StandupsTests;
+			productReference = AA08A3BB299D1C600016C9FB /* StandupsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AA9D36ED299F22AB00716D7A /* Standups */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA9D36FC299F22AB00716D7A /* Build configuration list for PBXNativeTarget "Standups" */;
@@ -111,6 +159,10 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					AA08A3BA299D1C600016C9FB = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = AA9D36ED299F22AB00716D7A;
+					};
 					AA9D36ED299F22AB00716D7A = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -134,11 +186,19 @@
 			projectRoot = "";
 			targets = (
 				AA9D36ED299F22AB00716D7A /* Standups */,
+				AA08A3BA299D1C600016C9FB /* StandupsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AA08A3B9299D1C600016C9FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA9D36EC299F22AB00716D7A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -151,6 +211,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AA08A3B7299D1C600016C9FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA08A3BE299D1C600016C9FB /* StandupsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA9D36EA299F22AB00716D7A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -164,7 +232,53 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AA08A3C0299D1C600016C9FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA9D36ED299F22AB00716D7A /* Standups */;
+			targetProxy = AA08A3BF299D1C600016C9FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		AA08A3C2299D1C600016C9FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W62BWL527B;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ryan-son.StandupsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Standups.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Standups";
+			};
+			name = Debug;
+		};
+		AA08A3C3299D1C600016C9FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W62BWL527B;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ryan-son.StandupsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Standups.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Standups";
+			};
+			name = Release;
+		};
 		AA9D36FA299F22AB00716D7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -342,6 +456,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA08A3C1299D1C600016C9FB /* Build configuration list for PBXNativeTarget "StandupsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA08A3C2299D1C600016C9FB /* Debug */,
+				AA08A3C3299D1C600016C9FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AA9D36E9299F22AB00716D7A /* Build configuration list for PBXProject "Standups" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
