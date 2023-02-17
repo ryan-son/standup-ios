@@ -16,7 +16,7 @@ final class EditStandupModel: ObservableObject {
     focus: EditStandupView.Field? = .title,
     standup: Standup
   ) {
-    self.focus = .title
+    self.focus = focus
     self.standup = standup
 
     if self.standup.attendees.isEmpty {
