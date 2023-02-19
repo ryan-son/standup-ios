@@ -19,6 +19,7 @@ final class StandupDetailModel: ObservableObject {
     case alert(AlertState<AlertAction>)
     case edit(EditStandupModel)
     case meeting(Meeting)
+    case record(RecordMeetingModel)
   }
   enum AlertAction {
     case confirmDeletion
@@ -65,6 +66,10 @@ final class StandupDetailModel: ObservableObject {
     self.standup = model.standup
     self.destination = nil
   }
+
+  func startMeetingButtonTapped() {
+    self.destination = .record(RecordMeetingModel(standup: self.standup))
+  }
 }
 
 extension AlertState where Action == StandupDetailModel.AlertAction {
@@ -85,7 +90,7 @@ struct StandupDetailView: View {
     List {
       Section {
         Button {
-
+          self.model.startMeetingButtonTapped()
         } label: {
           Label("Start Meeting", systemImage: "timer")
             .font(.headline)
@@ -158,6 +163,12 @@ struct StandupDetailView: View {
       case: /StandupDetailModel.Destination.meeting
     ) { $meeting in
       MeetingView(meeting: meeting, standup: self.model.standup)
+    }
+    .navigationDestination(
+      unwrapping: self.$model.destination,
+      case: /StandupDetailModel.Destination.record
+    ) { $model in
+      RecordMeetingView(model: model)
     }
     .alert(
       unwrapping: self.$model.destination,
