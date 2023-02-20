@@ -6,14 +6,24 @@
 //
 
 import SwiftUI
+import SwiftUINavigation
 import XCTestDynamicOverlay
 
 final class RecordMeetingModel: ObservableObject {
   let standup: Standup
 
+  @Published var destination: Destination?
   @Published var dismiss = false
   @Published var secondsElapsed = 0
   @Published var speakerIndex = 0
+
+  enum Destination {
+    case alert(AlertState<AlertAction>)
+  }
+  enum AlertAction {
+    case confirmSave
+    case confirmDiscard
+  }
 
   var onMeetingFinished: () -> Void = unimplemented("RecordMeetingModel.onMeetingFinished")
 
@@ -21,16 +31,51 @@ final class RecordMeetingModel: ObservableObject {
     return self.standup.duration - .seconds(self.secondsElapsed)
   }
 
-  init(standup: Standup) {
+  init(
+    destination: Destination? = nil,
+    standup: Standup
+  ) {
+    self.destination = destination
     self.standup = standup
   }
 
-  func nextButtonTapped() {
+  var isAlertOpen: Bool {
+    switch destination {
+    case .alert:
+      return true
+    case .none:
+      return false
+    }
+  }
 
+  func nextButtonTapped() {
+    guard self.speakerIndex < self.standup.attendees.count - 1 else {
+//      self.onMeetingFinished()
+//      self.dismiss = true
+      self.destination = .alert(.endMeeting(needsDiscard: false))
+      return
+    }
+
+    self.speakerIndex += 1
+    self.secondsElapsed = self.speakerIndex * Int(self.standup.durationPerAttendee.components.seconds)
   }
 
   func endMeetingButtonTapped() {
+    self.destination = .alert(.endMeeting(needsDiscard: true))
+  }
 
+  func alertButtonTapped(_ action: AlertAction?) {
+    switch action {
+    case .confirmSave:
+      self.onMeetingFinished()
+      self.dismiss = true
+
+    case .confirmDiscard:
+      self.dismiss = true
+
+    case nil:
+      break
+    }
   }
 
   @MainActor
@@ -38,6 +83,8 @@ final class RecordMeetingModel: ObservableObject {
     do {
       while true {
         try await Task.sleep(for: .seconds(1))
+        guard !self.isAlertOpen else { continue }
+
         self.secondsElapsed += 1
 
         if self.secondsElapsed.isMultiple(of: Int(self.standup.durationPerAttendee.components.seconds)) {
@@ -50,6 +97,26 @@ final class RecordMeetingModel: ObservableObject {
         }
       }
     } catch {}
+  }
+}
+
+extension AlertState where Action == RecordMeetingModel.AlertAction {
+  static func endMeeting(needsDiscard: Bool) -> AlertState {
+    return AlertState(
+      title: {
+        TextState("End meeting?")
+      }, actions: {
+        ButtonState(action: .send(.confirmSave)) { TextState("Save and end") }
+
+        if needsDiscard {
+          ButtonState(role: .destructive, action: .send(.confirmDiscard)) { TextState("discard") }
+        }
+
+        ButtonState(role: .cancel) { TextState("Resume") }
+      }, message: {
+        TextState("You are ending the meeting early. What would you like to do?")
+      }
+    )
   }
 }
 
@@ -92,6 +159,12 @@ struct RecordMeetingView: View {
     .navigationBarBackButtonHidden(true)
     .task { await self.model.task() }
     .onChange(of: self.model.dismiss) { _ in self.dismiss() }
+    .alert(
+      unwrapping: self.$model.destination,
+      case: /RecordMeetingModel.Destination.alert
+    ) { action in
+      self.model.alertButtonTapped(action)
+    }
   }
 }
 
@@ -264,6 +337,8 @@ struct MeetingFooterView: View {
 
 struct RecordMeeting_Previews: PreviewProvider {
   static var previews: some View {
-    RecordMeetingView(model: RecordMeetingModel(standup: .mock))
+    NavigationStack {
+      RecordMeetingView(model: RecordMeetingModel(standup: .mock))
+    }
   }
 }
