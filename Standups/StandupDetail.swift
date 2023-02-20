@@ -5,6 +5,7 @@
 //  Created by Geonhee on 2023/02/17.
 //
 
+import Clocks
 import SwiftUI
 import SwiftUINavigation
 import XCTestDynamicOverlay
@@ -15,6 +16,8 @@ final class StandupDetailModel: ObservableObject {
     didSet { self.bind() }
   }
   @Published var standup: Standup
+
+  private let clock: any Clock<Duration>
 
   var onConfirmDeletion: () -> Void = unimplemented("StandupDetailModel.onConfirmDeletion")
 
@@ -29,9 +32,11 @@ final class StandupDetailModel: ObservableObject {
   }
 
   init(
+    clock: any Clock<Duration> = ContinuousClock(),
     destination: Destination? = nil,
     standup: Standup
   ) {
+    self.clock = clock
     self.destination = destination
     self.standup = standup
     self.bind()
@@ -72,7 +77,12 @@ final class StandupDetailModel: ObservableObject {
   }
 
   func startMeetingButtonTapped() {
-    self.destination = .record(RecordMeetingModel(standup: self.standup))
+    self.destination = .record(
+      RecordMeetingModel(
+        clock: self.clock,
+        standup: self.standup
+      )
+    )
   }
 
   private func bind() {
@@ -82,7 +92,7 @@ final class StandupDetailModel: ObservableObject {
         guard let self else { return }
 
         Task {
-          try? await Task.sleep(for: .milliseconds(400))
+          try? await self.clock.sleep(for: .milliseconds(400))
           withAnimation {
             _ = self.standup.meetings.insert(
               Meeting(

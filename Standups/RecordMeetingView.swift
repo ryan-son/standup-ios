@@ -5,6 +5,7 @@
 //  Created by Geonhee on 2023/02/20.
 //
 
+import Clocks
 @preconcurrency import Speech
 import SwiftUI
 import SwiftUINavigation
@@ -19,6 +20,7 @@ final class RecordMeetingModel: ObservableObject {
   @Published var secondsElapsed = 0
   @Published var speakerIndex = 0
   private var transcript = ""
+  private let clock: any Clock<Duration>
 
   enum Destination {
     case alert(AlertState<AlertAction>)
@@ -35,9 +37,11 @@ final class RecordMeetingModel: ObservableObject {
   }
 
   init(
+    clock: any Clock<Duration> = ContinuousClock(),
     destination: Destination? = nil,
     standup: Standup
   ) {
+    self.clock = clock
     self.destination = destination
     self.standup = standup
   }
@@ -109,10 +113,7 @@ final class RecordMeetingModel: ObservableObject {
   }
 
   private func startTimer() async throws {
-    while true {
-      try await Task.sleep(for: .seconds(1))
-      guard !self.isAlertOpen else { continue }
-
+    for await _ in self.clock.timer(interval: .seconds(1)) where !self.isAlertOpen {
       self.secondsElapsed += 1
 
       if self.secondsElapsed.isMultiple(of: Int(self.standup.durationPerAttendee.components.seconds)) {
