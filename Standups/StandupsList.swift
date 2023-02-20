@@ -11,6 +11,48 @@ import IdentifiedCollections
 import SwiftUI
 import SwiftUINavigation
 
+struct DataManager: Sendable {
+  var load: @Sendable (URL) throws -> Data
+  var save: @Sendable (Data, URL) throws -> Void
+}
+
+extension DataManager: DependencyKey {
+  static var liveValue = DataManager(
+    load: { url in try Data(contentsOf: url) },
+    save: { data, url in try data.write(to: url) }
+  )
+}
+
+extension DataManager {
+  static func mock(initialData: Data = Data()) -> DataManager {
+    let data = LockIsolated(initialData)
+    return DataManager(
+      load: { _ in data.value },
+      save: { newData, _ in data.setValue(newData) })
+  }
+  static let failToWrite = DataManager(
+    load: { url in Data() },
+    save: { data, url in
+      struct SaveError: Error {}
+      throw SaveError()
+    }
+  )
+  static let failToLoad = DataManager(
+    load: { _ in
+      struct LoadError: Error {}
+      throw LoadError()
+    },
+    save: { newData, url in }
+  )
+}
+
+extension DependencyValues {
+  var dataManager: DataManager {
+    get { self[DataManager.self] }
+    set { self[DataManager.self] = newValue }
+  }
+}
+
 @MainActor
 final class StandupsListModel: ObservableObject {
   @Published var destination: Destination? {
@@ -21,6 +63,7 @@ final class StandupsListModel: ObservableObject {
   private var destinationCancellable: AnyCancellable?
   private var cancellables: Set<AnyCancellable> = []
 
+  @Dependency(\.dataManager) var dataManager
   @Dependency(\.mainQueue) var mainQueue
 
   enum Destination {
@@ -37,7 +80,7 @@ final class StandupsListModel: ObservableObject {
     do {
       self.standups = try JSONDecoder().decode(
         IdentifiedArray.self,
-        from: Data(contentsOf: .standups)
+        from: self.dataManager.load(.standups)
       )
     } catch {
 
@@ -46,9 +89,12 @@ final class StandupsListModel: ObservableObject {
     self.$standups
       .dropFirst()
       .debounce(for: .seconds(1), scheduler: self.mainQueue)
-      .sink { standups in
+      .sink { [weak self] standups in
         do {
-          try JSONEncoder().encode(standups).write(to: .standups)
+          try self?.dataManager.save(
+            JSONEncoder().encode(standups),
+            .standups
+          )
         } catch {
           // TODO: alert
         }
