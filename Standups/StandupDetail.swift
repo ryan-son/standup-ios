@@ -6,6 +6,7 @@
 //
 
 import Clocks
+import Dependencies
 import SwiftUI
 import SwiftUINavigation
 import XCTestDynamicOverlay
@@ -17,7 +18,7 @@ final class StandupDetailModel: ObservableObject {
   }
   @Published var standup: Standup
 
-  private let clock: any Clock<Duration>
+  @Dependency(\.continuousClock) var clock
 
   var onConfirmDeletion: () -> Void = unimplemented("StandupDetailModel.onConfirmDeletion")
 
@@ -32,11 +33,9 @@ final class StandupDetailModel: ObservableObject {
   }
 
   init(
-    clock: any Clock<Duration> = ContinuousClock(),
     destination: Destination? = nil,
     standup: Standup
   ) {
-    self.clock = clock
     self.destination = destination
     self.standup = standup
     self.bind()
@@ -79,7 +78,6 @@ final class StandupDetailModel: ObservableObject {
   func startMeetingButtonTapped() {
     self.destination = .record(
       RecordMeetingModel(
-        clock: self.clock,
         standup: self.standup
       )
     )

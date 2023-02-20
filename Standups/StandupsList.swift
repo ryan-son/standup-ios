@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Dependencies
 import IdentifiedCollections
 import SwiftUI
 import SwiftUINavigation
@@ -19,6 +20,8 @@ final class StandupsListModel: ObservableObject {
 
   private var destinationCancellable: AnyCancellable?
   private var cancellables: Set<AnyCancellable> = []
+
+  @Dependency(\.mainQueue) var mainQueue
 
   enum Destination {
     case add(EditStandupModel)
@@ -42,7 +45,7 @@ final class StandupsListModel: ObservableObject {
 
     self.$standups
       .dropFirst()
-      .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+      .debounce(for: .seconds(1), scheduler: self.mainQueue)
       .sink { standups in
         do {
           try JSONEncoder().encode(standups).write(to: .standups)
