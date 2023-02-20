@@ -10,7 +10,9 @@ import SwiftUINavigation
 import XCTestDynamicOverlay
 
 final class StandupDetailModel: ObservableObject {
-  @Published var destination: Destination?
+  @Published var destination: Destination? {
+    didSet { self.bind() }
+  }
   @Published var standup: Standup
 
   var onConfirmDeletion: () -> Void = unimplemented("StandupDetailModel.onConfirmDeletion")
@@ -31,6 +33,7 @@ final class StandupDetailModel: ObservableObject {
   ) {
     self.destination = destination
     self.standup = standup
+    self.bind()
   }
 
   func deleteMeetings(atOffsets indices: IndexSet) {
@@ -69,6 +72,21 @@ final class StandupDetailModel: ObservableObject {
 
   func startMeetingButtonTapped() {
     self.destination = .record(RecordMeetingModel(standup: self.standup))
+  }
+
+  private func bind() {
+    switch destination {
+    case let .record(recordMeetingModel):
+      recordMeetingModel.onMeetingFinished = { [weak self] in
+        guard let self else { return }
+
+        self.destination = nil
+      }
+      break
+
+    case .edit, .meeting, .alert, .none:
+      break
+    }
   }
 }
 

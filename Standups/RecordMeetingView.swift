@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import XCTestDynamicOverlay
 
 final class RecordMeetingModel: ObservableObject {
   let standup: Standup
 
   @Published var secondsElapsed = 0
   @Published var speakerIndex = 0
+
+  var onMeetingFinished: () -> Void = unimplemented("RecordMeetingModel.onMeetingFinished")
 
   var durationRemaining: Duration {
     return self.standup.duration - .seconds(self.secondsElapsed)
@@ -27,6 +30,24 @@ final class RecordMeetingModel: ObservableObject {
 
   func endMeetingButtonTapped() {
 
+  }
+
+  @MainActor
+  func task() async {
+    do {
+      while true {
+        try await Task.sleep(for: .seconds(1))
+        self.secondsElapsed += 1
+
+        if self.secondsElapsed.isMultiple(of: Int(self.standup.durationPerAttendee.components.seconds)) {
+          if self.speakerIndex == self.standup.attendees.count - 1 {
+            self.onMeetingFinished()
+            break
+          }
+          self.speakerIndex += 1
+        }
+      }
+    } catch {}
   }
 }
 
@@ -66,6 +87,7 @@ struct RecordMeetingView: View {
       }
     }
     .navigationBarBackButtonHidden(true)
+    .task { await self.model.task() }
   }
 }
 
@@ -155,15 +177,17 @@ struct MeetingTimerView: View {
           Array(self.standup.attendees.enumerated()),
           id: \.element.id
         ) { index, attendee in
-          SpeakerArc(
-            totalSpeakers: self.standup.attendees.count,
-            speakerIndex: index
-          )
-          .rotation(Angle(degrees: -90))
-          .stroke(
-            self.standup.theme.mainColor,
-            lineWidth: 12
-          )
+          if index < self.speakerIndex + 1 {
+            SpeakerArc(
+              totalSpeakers: self.standup.attendees.count,
+              speakerIndex: index
+            )
+            .rotation(Angle(degrees: -90))
+            .stroke(
+              self.standup.theme.mainColor,
+              lineWidth: 12
+            )
+          }
         }
       }
       .padding(.horizontal)
