@@ -11,6 +11,7 @@ import XCTestDynamicOverlay
 final class RecordMeetingModel: ObservableObject {
   let standup: Standup
 
+  @Published var dismiss = false
   @Published var secondsElapsed = 0
   @Published var speakerIndex = 0
 
@@ -42,6 +43,7 @@ final class RecordMeetingModel: ObservableObject {
         if self.secondsElapsed.isMultiple(of: Int(self.standup.durationPerAttendee.components.seconds)) {
           if self.speakerIndex == self.standup.attendees.count - 1 {
             self.onMeetingFinished()
+            self.dismiss = true
             break
           }
           self.speakerIndex += 1
@@ -52,6 +54,7 @@ final class RecordMeetingModel: ObservableObject {
 }
 
 struct RecordMeetingView: View {
+  @Environment(\.dismiss) var dismiss
   @ObservedObject var model: RecordMeetingModel
 
   var body: some View {
@@ -88,6 +91,7 @@ struct RecordMeetingView: View {
     }
     .navigationBarBackButtonHidden(true)
     .task { await self.model.task() }
+    .onChange(of: self.model.dismiss) { _ in self.dismiss() }
   }
 }
 
