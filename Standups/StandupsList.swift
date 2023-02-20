@@ -10,6 +10,7 @@ import IdentifiedCollections
 import SwiftUI
 import SwiftUINavigation
 
+@MainActor
 final class StandupsListModel: ObservableObject {
   @Published var destination: Destination? {
     didSet { self.bind() }
