@@ -11,48 +11,6 @@ import IdentifiedCollections
 import SwiftUI
 import SwiftUINavigation
 
-struct DataManager: Sendable {
-  var load: @Sendable (URL) throws -> Data
-  var save: @Sendable (Data, URL) throws -> Void
-}
-
-extension DataManager: DependencyKey {
-  static var liveValue = DataManager(
-    load: { url in try Data(contentsOf: url) },
-    save: { data, url in try data.write(to: url) }
-  )
-}
-
-extension DataManager {
-  static func mock(initialData: Data = Data()) -> DataManager {
-    let data = LockIsolated(initialData)
-    return DataManager(
-      load: { _ in data.value },
-      save: { newData, _ in data.setValue(newData) })
-  }
-  static let failToWrite = DataManager(
-    load: { url in Data() },
-    save: { data, url in
-      struct SaveError: Error {}
-      throw SaveError()
-    }
-  )
-  static let failToLoad = DataManager(
-    load: { _ in
-      struct LoadError: Error {}
-      throw LoadError()
-    },
-    save: { newData, url in }
-  )
-}
-
-extension DependencyValues {
-  var dataManager: DataManager {
-    get { self[DataManager.self] }
-    set { self[DataManager.self] = newValue }
-  }
-}
-
 @MainActor
 final class StandupsListModel: ObservableObject {
   @Published var destination: Destination? {
@@ -212,51 +170,6 @@ struct StandupsList: View {
         }
     }
   }
-}
-
-struct CardView: View {
-  let standup: Standup
-
-  var body: some View {
-    VStack(alignment: .leading) {
-      Text(self.standup.title)
-        .font(.headline)
-      Spacer()
-      HStack {
-        Label(
-          "\(self.standup.attendees.count)",
-          systemImage: "person.3"
-        )
-        Spacer()
-        Label(
-          self.standup.duration.formatted(.units()),
-          systemImage: "clock"
-        )
-        .labelStyle(.trailingIcon)
-      }
-      .font(.caption)
-    }
-    .padding()
-    .foregroundColor(self.standup.theme.accentColor)
-  }
-}
-
-struct TrailingIconLabelStyle: LabelStyle {
-  func makeBody(configuration: Configuration) -> some View {
-    HStack {
-      configuration.title
-      configuration.icon
-    }
-  }
-}
-
-extension LabelStyle where Self == TrailingIconLabelStyle {
-  static var trailingIcon: Self { Self() }
-}
-
-extension URL {
-  static let standups = Self.documentsDirectory
-    .appending(component: "standups.json")
 }
 
 struct StandupsList_Previews: PreviewProvider {
