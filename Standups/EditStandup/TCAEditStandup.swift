@@ -105,3 +105,18 @@ struct TCAEditStandupView: View {
     }
   }
 }
+
+struct TCAEditStandup_Previews: PreviewProvider {
+  static var previews: some View {
+    WithState(initialValue: Standup.mock) { $standup in
+      TCAEditStandupView(
+        store: Store(
+          initialState: EditStandupFeature.State(
+            standup: standup
+          ),
+          reducer: EditStandupFeature()
+        )
+      )
+    }
+  }
+}
