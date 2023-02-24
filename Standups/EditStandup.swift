@@ -5,13 +5,14 @@
 //  Created by Geonhee on 2023/02/14.
 //
 
+import ComposableArchitecture
 import SwiftUI
 import SwiftUINavigation
 
 final class EditStandupModel: ObservableObject {
   @Published var focus: EditStandupView.Field?
   @Published var standup: Standup
-  
+
   init(
     focus: EditStandupView.Field? = .title,
     standup: Standup
@@ -25,10 +26,10 @@ final class EditStandupModel: ObservableObject {
       )
     }
   }
-  
+
   func deleteAttendees(atOffsets indices: IndexSet) {
     self.standup.attendees.remove(atOffsets: indices)
-    
+
     if self.standup.attendees.isEmpty {
       self.standup.attendees.append(
         Attendee(id: Attendee.ID(UUID()), name: "")
@@ -37,7 +38,7 @@ final class EditStandupModel: ObservableObject {
     let index = min(indices.first!, self.standup.attendees.count - 1)
     self.focus = .attendee(self.standup.attendees[index].id)
   }
-  
+
   func addAttendeeButtonTapped() {
     let attendee = Attendee(id: Attendee.ID(UUID()), name: "")
     self.standup.attendees.append(attendee)
@@ -51,8 +52,8 @@ struct EditStandupView: View {
     case title
   }
 
-  @FocusState var focus: Field?
   @ObservedObject var model: EditStandupModel
+  @FocusState var focus: Field?
 
   var body: some View {
     Form {
@@ -111,7 +112,7 @@ struct ThemePicker: View {
 }
 
 extension Duration {
-  fileprivate var seconds: Double {
+  var seconds: Double {
     get { Double(self.components.seconds / 60 ) }
     set { self = .seconds(newValue * 60) }
   }

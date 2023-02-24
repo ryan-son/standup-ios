@@ -5,13 +5,10 @@
 //  Created by Geonhee on 2023/02/17.
 //
 
-import Clocks
-import Dependencies
+import ComposableArchitecture
 import SwiftUI
-import SwiftUINavigation
 import XCTestDynamicOverlay
 
-@MainActor
 final class StandupDetailModel: ObservableObject {
   @Published var destination: Destination? {
     didSet { self.bind() }

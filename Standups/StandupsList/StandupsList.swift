@@ -6,10 +6,8 @@
 //
 
 import Combine
-import Dependencies
-import IdentifiedCollections
+import ComposableArchitecture
 import SwiftUI
-import SwiftUINavigation
 
 @MainActor
 final class StandupsListModel: ObservableObject {
@@ -117,7 +115,7 @@ final class StandupsListModel: ObservableObject {
   }
 }
 
-struct StandupsList: View {
+struct StandupsListView: View {
   @ObservedObject var model: StandupsListModel
 
   var body: some View {
@@ -174,7 +172,7 @@ struct StandupsList: View {
 
 struct StandupsList_Previews: PreviewProvider {
   static var previews: some View {
-    StandupsList(
+    StandupsListView(
       model: StandupsListModel(
 //        destination: .add(
 //          EditStandupModel(

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA08A3B6299BC88F0016C9FB /* EditStandup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA08A3B5299BC88F0016C9FB /* EditStandup.swift */; };
 		AA08A3BE299D1C600016C9FB /* StandupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA08A3BD299D1C600016C9FB /* StandupsTests.swift */; };
 		AA08A3C5299E55630016C9FB /* EditStandupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA08A3C4299E55630016C9FB /* EditStandupTests.swift */; };
 		AA08A3C7299FBC5B0016C9FB /* StandupDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA08A3C6299FBC5B0016C9FB /* StandupDetail.swift */; };
@@ -20,6 +19,9 @@
 		AA41059129AB460400EF760A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = AA41059029AB460400EF760A /* ComposableArchitecture */; };
 		AA41059629AB460400EF760A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41059529AB460400EF760A /* DataManager.swift */; };
 		AA41059929AB460400EF760A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41059829AB460400EF760A /* CardView.swift */; };
+		AA41059C29AB460400EF760A /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = AA41059B29AB460400EF760A /* SwiftUINavigation */; };
+		AA9467AD29A916CA00610F51 /* TCAEditStandup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9467AC29A916CA00610F51 /* TCAEditStandup.swift */; };
+		AA9467AE29A918E000610F51 /* EditStandup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA08A3B5299BC88F0016C9FB /* EditStandup.swift */; };
 		AA9D36F2299F22AB00716D7A /* StandupsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D36F1299F22AB00716D7A /* StandupsApp.swift */; };
 		AA9D36F6299F22AB00716D7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9D36F5299F22AB00716D7A /* Assets.xcassets */; };
 		AA9D36F9299F22AB00716D7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9D36F8299F22AB00716D7A /* Preview Assets.xcassets */; };
@@ -50,6 +52,7 @@
 		AA08A3DB29A3DF820016C9FB /* SpeechClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechClient.swift; sourceTree = "<group>"; };
 		AA41059529AB460400EF760A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		AA41059829AB460400EF760A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		AA9467AC29A916CA00610F51 /* TCAEditStandup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAEditStandup.swift; sourceTree = "<group>"; };
 		AA9D36EE299F22AB00716D7A /* Standups.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Standups.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9D36F1299F22AB00716D7A /* StandupsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupsApp.swift; sourceTree = "<group>"; };
 		AA9D36F5299F22AB00716D7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,6 +75,7 @@
 			files = (
 				AA41059129AB460400EF760A /* ComposableArchitecture in Frameworks */,
 				AA31B7EF29A0A55D00FBE7D2 /* Tagged in Frameworks */,
+				AA41059C29AB460400EF760A /* SwiftUINavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +111,14 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		AA9467AB29A916B200610F51 /* EditStandup */ = {
+			isa = PBXGroup;
+			children = (
+				AA9467AC29A916CA00610F51 /* TCAEditStandup.swift */,
+			);
+			path = EditStandup;
+			sourceTree = "<group>";
+		};
 		AA9D36E5299F22AB00716D7A = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +140,7 @@
 		AA9D36F0299F22AB00716D7A /* Standups */ = {
 			isa = PBXGroup;
 			children = (
+				AA9467AB29A916B200610F51 /* EditStandup */,
 				AA41059229AB460400EF760A /* StandupsList */,
 				AA08A3B5299BC88F0016C9FB /* EditStandup.swift */,
 				AA08A3C8299FC6560016C9FB /* MeetingView.swift */,
@@ -187,6 +200,7 @@
 			packageProductDependencies = (
 				AA31B7EE29A0A55D00FBE7D2 /* Tagged */,
 				AA41059029AB460400EF760A /* ComposableArchitecture */,
+				AA41059B29AB460400EF760A /* SwiftUINavigation */,
 			);
 			productName = Standups;
 			productReference = AA9D36EE299F22AB00716D7A /* Standups.app */;
@@ -223,6 +237,7 @@
 			packageReferences = (
 				AA31B7ED29A0A55D00FBE7D2 /* XCRemoteSwiftPackageReference "swift-tagged" */,
 				AA41058F29AB460400EF760A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				AA41059A29AB460400EF760A /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
 			);
 			productRefGroup = AA9D36EF299F22AB00716D7A /* Products */;
 			projectDirPath = "";
@@ -269,13 +284,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9467AE29A918E000610F51 /* EditStandup.swift in Sources */,
 				AA9D3702299F22AB00716D7A /* Models.swift in Sources */,
-				AA08A3B6299BC88F0016C9FB /* EditStandup.swift in Sources */,
 				AA08A3C9299FC6560016C9FB /* MeetingView.swift in Sources */,
 				AA9D3700299F22AB00716D7A /* StandupsList.swift in Sources */,
 				AA41059929AB460400EF760A /* CardView.swift in Sources */,
 				AA9D36F2299F22AB00716D7A /* StandupsApp.swift in Sources */,
 				AA08A3DC29A3DF820016C9FB /* SpeechClient.swift in Sources */,
+				AA9467AD29A916CA00610F51 /* TCAEditStandup.swift in Sources */,
 				AA08A3C7299FBC5B0016C9FB /* StandupDetail.swift in Sources */,
 				AA41059629AB460400EF760A /* DataManager.swift in Sources */,
 				AA08A3CE29A284DD0016C9FB /* RecordMeetingView.swift in Sources */,
@@ -556,6 +572,14 @@
 				minimumVersion = 0.51.0;
 			};
 		};
+		AA41059A29AB460400EF760A /* XCRemoteSwiftPackageReference "swiftui-navigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swiftui-navigation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -568,6 +592,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA41058F29AB460400EF760A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		AA41059B29AB460400EF760A /* SwiftUINavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA41059A29AB460400EF760A /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
+			productName = SwiftUINavigation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

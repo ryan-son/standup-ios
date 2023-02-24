@@ -5,14 +5,11 @@
 //  Created by Geonhee on 2023/02/20.
 //
 
-import Clocks
-import Dependencies
+import ComposableArchitecture
 @preconcurrency import Speech
 import SwiftUI
-import SwiftUINavigation
 import XCTestDynamicOverlay
 
-@MainActor
 final class RecordMeetingModel: ObservableObject {
   let standup: Standup
 
