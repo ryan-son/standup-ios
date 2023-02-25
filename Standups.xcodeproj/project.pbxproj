@@ -16,6 +16,7 @@
 		AA08A3D429A3CDE50016C9FB /* REcordMeetingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA08A3D329A3CDE50016C9FB /* REcordMeetingTests.swift */; };
 		AA08A3DC29A3DF820016C9FB /* SpeechClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA08A3DB29A3DF820016C9FB /* SpeechClient.swift */; };
 		AA31B7EF29A0A55D00FBE7D2 /* Tagged in Frameworks */ = {isa = PBXBuildFile; productRef = AA31B7EE29A0A55D00FBE7D2 /* Tagged */; };
+		AA36BA6429AA6D4A00709B08 /* TCARecordMeeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36BA6329AA6D4A00709B08 /* TCARecordMeeting.swift */; };
 		AA41059129AB460400EF760A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = AA41059029AB460400EF760A /* ComposableArchitecture */; };
 		AA41059629AB460400EF760A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41059529AB460400EF760A /* DataManager.swift */; };
 		AA41059929AB460400EF760A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41059829AB460400EF760A /* CardView.swift */; };
@@ -50,6 +51,7 @@
 		AA08A3D129A3CC580016C9FB /* StandupsListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupsListTests.swift; sourceTree = "<group>"; };
 		AA08A3D329A3CDE50016C9FB /* REcordMeetingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = REcordMeetingTests.swift; sourceTree = "<group>"; };
 		AA08A3DB29A3DF820016C9FB /* SpeechClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechClient.swift; sourceTree = "<group>"; };
+		AA36BA6329AA6D4A00709B08 /* TCARecordMeeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCARecordMeeting.swift; sourceTree = "<group>"; };
 		AA41059529AB460400EF760A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		AA41059829AB460400EF760A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		AA9467AC29A916CA00610F51 /* TCAEditStandup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAEditStandup.swift; sourceTree = "<group>"; };
@@ -93,6 +95,15 @@
 			path = StandupsTests;
 			sourceTree = "<group>";
 		};
+		AA36BA6229AA6D0A00709B08 /* RecordMeeting */ = {
+			isa = PBXGroup;
+			children = (
+				AA08A3CD29A284DD0016C9FB /* RecordMeetingView.swift */,
+				AA36BA6329AA6D4A00709B08 /* TCARecordMeeting.swift */,
+			);
+			path = RecordMeeting;
+			sourceTree = "<group>";
+		};
 		AA41059229AB460400EF760A /* StandupsList */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +125,7 @@
 		AA9467AB29A916B200610F51 /* EditStandup */ = {
 			isa = PBXGroup;
 			children = (
+				AA08A3B5299BC88F0016C9FB /* EditStandup.swift */,
 				AA9467AC29A916CA00610F51 /* TCAEditStandup.swift */,
 			);
 			path = EditStandup;
@@ -141,11 +153,10 @@
 			isa = PBXGroup;
 			children = (
 				AA9467AB29A916B200610F51 /* EditStandup */,
+				AA36BA6229AA6D0A00709B08 /* RecordMeeting */,
 				AA41059229AB460400EF760A /* StandupsList */,
-				AA08A3B5299BC88F0016C9FB /* EditStandup.swift */,
 				AA08A3C8299FC6560016C9FB /* MeetingView.swift */,
 				AA9D3701299F22AB00716D7A /* Models.swift */,
-				AA08A3CD29A284DD0016C9FB /* RecordMeetingView.swift */,
 				AA08A3DB29A3DF820016C9FB /* SpeechClient.swift */,
 				AA08A3C6299FBC5B0016C9FB /* StandupDetail.swift */,
 				AA9D36F1299F22AB00716D7A /* StandupsApp.swift */,
@@ -294,6 +305,7 @@
 				AA9467AD29A916CA00610F51 /* TCAEditStandup.swift in Sources */,
 				AA08A3C7299FBC5B0016C9FB /* StandupDetail.swift in Sources */,
 				AA41059629AB460400EF760A /* DataManager.swift in Sources */,
+				AA36BA6429AA6D4A00709B08 /* TCARecordMeeting.swift in Sources */,
 				AA08A3CE29A284DD0016C9FB /* RecordMeetingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

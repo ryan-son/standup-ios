@@ -112,6 +112,7 @@ struct TCAEditStandup_Previews: PreviewProvider {
       TCAEditStandupView(
         store: Store(
           initialState: EditStandupFeature.State(
+            focus: .title,
             standup: standup
           ),
           reducer: EditStandupFeature()
